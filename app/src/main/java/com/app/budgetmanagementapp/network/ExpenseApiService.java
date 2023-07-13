@@ -1,8 +1,10 @@
 package com.app.budgetmanagementapp.network;
 
 import com.app.budgetmanagementapp.model.ExpenseModel;
+import com.app.budgetmanagementapp.model.ExpenseResponseModel;
 
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,12 +14,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ExpenseApiService {
-    @GET("expenses")
-    Call<List<ExpenseModel>> getExpenses();
+    @GET("api.json")
+    Call<Map<String, ExpenseModel>> getExpenses();
 
-    @POST("expenses")
+    @POST("api.json")
     Call<ExpenseModel> addExpense(@Body ExpenseModel expense);
 
-    @DELETE("expenses/{id}")
+    @DELETE("Transaction/{id}")
     Call<Void> deleteExpense(@Path("id") int id);
 }

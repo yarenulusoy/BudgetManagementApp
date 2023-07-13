@@ -64,7 +64,6 @@
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:cornerRadius="20dp"
                     app:srcCompat="@color/toryBlue" />
 
                 <LinearLayout
@@ -82,11 +81,10 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/textViewAmount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="48000 TL"
                         android:textColor="@color/white"
                         android:textSize="48sp" />
 
@@ -112,7 +110,7 @@
                                 android:text="Gelirlerim" />
 
                             <TextView
-                                android:id="@+id/textView12"
+                                android:id="@+id/amountTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
@@ -137,7 +135,7 @@
                                 android:text="Giderlerim" />
 
                             <TextView
-                                android:id="@+id/textView14"
+                                android:id="@+id/expenseTextView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="right"
@@ -176,16 +174,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
-                    <ListView
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                    </ListView>
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
             </ScrollView>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/buttonAddIncome"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Gelir Ekle"
@@ -193,7 +190,7 @@
                 app:backgroundTint="@color/toryBlue" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/buttonAddExpense"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textColor="@color/white"

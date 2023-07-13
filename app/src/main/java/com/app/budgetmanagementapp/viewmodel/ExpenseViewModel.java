@@ -9,39 +9,62 @@ import com.app.budgetmanagementapp.model.ExpenseModel;
 import com.app.budgetmanagementapp.network.ApiClient;
 import com.app.budgetmanagementapp.network.ExpenseApiService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ExpenseViewModel extends ViewModel {
-    private MutableLiveData<List<ExpenseModel>> expensesLiveData;
-    private ExpenseApiService expenseApiService;
+    private final MutableLiveData<List<ExpenseModel>> expensesLiveData;
+    private final MutableLiveData<Double> totalAmountLiveData;
+    private final MutableLiveData<Double> incomeTotalLiveData;
+    private final MutableLiveData<Double> expenseTotalLiveData;
+    private final ExpenseApiService expenseApiService;
 
     public ExpenseViewModel() {
         expensesLiveData = new MutableLiveData<>();
+        totalAmountLiveData = new MutableLiveData<>();
+        incomeTotalLiveData = new MutableLiveData<>();
+        expenseTotalLiveData = new MutableLiveData<>();
         expenseApiService = ApiClient.getRetrofitInstance().create(ExpenseApiService.class);
     }
 
     public LiveData<List<ExpenseModel>> getExpensesLiveData() {
         return expensesLiveData;
     }
+    public LiveData<Double> getTotalAmountLiveData() {
+        return totalAmountLiveData;
+    }
+    public LiveData<Double> getIncomeTotalLiveData() {
+        return incomeTotalLiveData;
+    }
+
+    public LiveData<Double> getExpenseTotalLiveData() {
+        return expenseTotalLiveData;
+    }
 
     public void getExpenses() {
-        Call<List<ExpenseModel>> call = expenseApiService.getExpenses();
-        call.enqueue(new Callback<List<ExpenseModel>>() {
+        Call<Map<String, ExpenseModel>> call = expenseApiService.getExpenses();
+        call.enqueue(new Callback<Map<String,ExpenseModel>>() {
             @Override
-            public void onResponse(@NonNull Call<List<ExpenseModel>> call, @NonNull Response<List<ExpenseModel>> response) {
+            public void onResponse(@NonNull Call<Map<String, ExpenseModel>> call, @NonNull Response<Map<String, ExpenseModel>> response) {
                 if (response.isSuccessful()) {
-                    expensesLiveData.setValue(response.body());
+                    Map<String, ExpenseModel> dataMap = response.body();
+                    if (dataMap != null) {
+                        List<ExpenseModel> expenseList = new ArrayList<>(dataMap.values());
+                        expensesLiveData.setValue(expenseList);
+                        calculateTotalAmount(expenseList);
+                    }
                 } else {
                     System.out.println(response.errorBody());
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<ExpenseModel>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Map<String, ExpenseModel>> call, @NonNull Throwable t) {
                 System.out.println(t.getMessage());
             }
         });
@@ -80,5 +103,27 @@ public class ExpenseViewModel extends ViewModel {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    private void calculateTotalAmount(List<ExpenseModel> expenseList) {
+        double totalAmount = 0;
+        double incomeTotal = 0;
+        double expenseTotal = 0;
+
+        for (ExpenseModel expense : expenseList) {
+            double amount = Double.parseDouble(expense.getAmount());
+            if ("Income".equals(expense.getMoneyType())) {
+                incomeTotal += amount;
+                totalAmount += amount;
+            } else {
+                expenseTotal += amount;
+                totalAmount -= amount;
+            }
+
+        }
+
+        totalAmountLiveData.setValue(totalAmount);
+        incomeTotalLiveData.setValue(incomeTotal);
+        expenseTotalLiveData.setValue(expenseTotal);
     }
 }
