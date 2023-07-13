@@ -31,7 +31,6 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     public void setExpenseDeleteListener(ExpenseDeleteListener listener) {
         this.expenseDeleteListener = listener;
     }
-
     public ExpenseAdapter() {
         this.expenseList = null;
         this.categoryTotalMap = new HashMap<>();
@@ -40,13 +39,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
         public TextView categoryTextView;
         public TextView amountTextView;
-       // public ImageView deleteButton;
+      //  public ImageView deleteButton;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             amountTextView = itemView.findViewById(R.id.amountTextView);
-            // deleteButton = itemView.findViewById(R.id.deleteButton);
+          //  deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 
@@ -62,7 +61,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         ExpenseModel model = expenseList.get(position);
         holder.categoryTextView.setText(model.getCategory());
         holder.amountTextView.setText(model.getAmount());
-/*        holder.deleteButton.setOnClickListener(v -> {
+        /*holder.deleteButton.setOnClickListener(v -> {
             if (expenseDeleteListener != null) {
                 int expenseId = model.getId();
                 expenseDeleteListener.onExpenseDelete(expenseId);
@@ -74,14 +73,13 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
     @Override
     public int getItemCount() {
-        return expenseList != null ? expenseList.size() : 0;
+        return  expenseList != null ? expenseList.size() : 0;
     }
 
     public void setDataList(List<ExpenseModel> expenses) {
-        expenseList = filterIncome(expenses);
+        expenseList =filterIncome(expenses);
         notifyDataSetChanged();
     }
-
     private List<ExpenseModel> filterIncome(List<ExpenseModel> expenses) {
         List<ExpenseModel> incomeList = new ArrayList<>();
         for (ExpenseModel expense : expenses) {
@@ -91,19 +89,12 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         }
         return incomeList;
     }
+    /*public void deleteExpense(int position) {
+        expenseList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, expenseList.size());
+    }*/
 
-    public void deleteExpense(int position) {
-        int expenseId = getExpenseIdByPosition(position);
-        expenseDeleteListener.onExpenseDelete(expenseId);
-    }
-
-    private int getExpenseIdByPosition(int position) {
-        if (expenseList != null && position >= 0 && position < expenseList.size()) {
-            ExpenseModel expense = expenseList.get(position);
-            return expense.getId();
-        }
-        return -1;
-    }
 
 
 }

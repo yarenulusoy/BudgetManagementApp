@@ -10,7 +10,6 @@ import com.app.budgetmanagementapp.view.LoginActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

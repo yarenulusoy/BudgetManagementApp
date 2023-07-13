@@ -29,27 +29,26 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ExpenseAdapter adapter;
     private ProgressDialog progressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         progressDialog = new ProgressDialog(this);
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
 
         Button buttonIncome = findViewById(R.id.buttonAddIncome);
         Button buttonExpense = findViewById(R.id.buttonAddExpense);
         Button buttonExchange = findViewById(R.id.buttonExchange);
         Button buttonAllExpense = findViewById(R.id.buttonAll);
-       // ImageButton buttonDelete = findViewById(R.id.deleteButton);
+        ImageButton buttonDelete = findViewById(R.id.deleteButton);
         ImageButton buttonLogout = findViewById(R.id.logOut);
         TextView totalAmountTextView = findViewById(R.id.textViewAmount);
         TextView totalIncomeTextView = findViewById(R.id.amountTextView);
         TextView totalExpenseTextView = findViewById(R.id.expenseTextView);
 
         expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
-
+        progressDialog.show();
         buttonIncome.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, AddIncome.class);
             startActivity(intent);
@@ -78,14 +77,12 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         expenseViewModel.getExpenses();
-
         expenseViewModel.getTotalAmountLiveData();
         expenseViewModel.getExpensesLiveData().observe(this, expenseModels -> adapter.setDataList(expenseModels));
         expenseViewModel.getTotalAmountLiveData().observe(this, totalAmount -> {
             progressDialog.dismiss();
             String formattedAmount = String.format(Locale.getDefault(), "%.2f TL", totalAmount);
             totalAmountTextView.setText(formattedAmount);
-
         });
 
         expenseViewModel.getIncomeTotalLiveData().observe(this, incomeTotal -> {
@@ -102,7 +99,7 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(HomeActivity.this, AllExpenseActivity.class);
             startActivity(intent);
         });
-
+/*
         adapter.setExpenseDeleteListener(new ExpenseAdapter.ExpenseDeleteListener() {
             @Override
             public void onExpenseDelete(int expenseId) {
@@ -115,9 +112,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void deleteExpenseFromFirebase(int expenseId) {
-        // Firebase Realtime Database'den veriyi silme işlemi
-        // expenseId'ye göre silme işlemini gerçekleştir
         expenseViewModel.deleteExpense(expenseId);
-    }
+    }*/
 
+    }
 }
