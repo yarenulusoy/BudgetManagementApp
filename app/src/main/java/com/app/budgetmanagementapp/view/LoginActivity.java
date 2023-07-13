@@ -21,11 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private AuthViewModel authViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView textViewSign= findViewById(R.id.textViewSignUp);
+        TextView textViewSign = findViewById(R.id.textViewSignUp);
         textViewSign.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
@@ -38,14 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         authViewModel.getUserLiveData().observe(this, firebaseUser -> {
             if (firebaseUser != null) {
-                if(!checkBox.isChecked()){
+                if (!checkBox.isChecked()) {
                     CryptoHelper.saveCredentials(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
-
                 }
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
-            }
-            else{
+            } else {
                 Toast.makeText(LoginActivity.this, "Lütfen eposta ve şifrenizi doğru girinz.", Toast.LENGTH_SHORT).show();
 
             }

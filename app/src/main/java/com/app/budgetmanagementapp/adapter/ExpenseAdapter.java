@@ -3,6 +3,8 @@ package com.app.budgetmanagementapp.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,18 +21,32 @@ import java.util.Map;
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
     private List<ExpenseModel> expenseList;
     private Map<String, Double> categoryTotalMap;
+    private ExpenseDeleteListener expenseDeleteListener; // Add this line
+
+
+    public interface ExpenseDeleteListener {
+        void onExpenseDelete(int expenseId);
+    }
+
+    public void setExpenseDeleteListener(ExpenseDeleteListener listener) {
+        this.expenseDeleteListener = listener;
+    }
+
     public ExpenseAdapter() {
-        this.expenseList = null;    this.categoryTotalMap = new HashMap<>();
+        this.expenseList = null;
+        this.categoryTotalMap = new HashMap<>();
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
         public TextView categoryTextView;
         public TextView amountTextView;
+       // public ImageView deleteButton;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
             categoryTextView = itemView.findViewById(R.id.categoryTextView);
             amountTextView = itemView.findViewById(R.id.amountTextView);
+            // deleteButton = itemView.findViewById(R.id.deleteButton);
         }
     }
 
@@ -46,28 +62,48 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         ExpenseModel model = expenseList.get(position);
         holder.categoryTextView.setText(model.getCategory());
         holder.amountTextView.setText(model.getAmount());
+/*        holder.deleteButton.setOnClickListener(v -> {
+            if (expenseDeleteListener != null) {
+                int expenseId = model.getId();
+                expenseDeleteListener.onExpenseDelete(expenseId);
+
+            }
+        });*/
     }
+
 
     @Override
     public int getItemCount() {
-        return  expenseList != null ? expenseList.size() : 0;
+        return expenseList != null ? expenseList.size() : 0;
     }
 
     public void setDataList(List<ExpenseModel> expenses) {
-        expenseList =filterIncome(expenses);
+        expenseList = filterIncome(expenses);
         notifyDataSetChanged();
     }
+
     private List<ExpenseModel> filterIncome(List<ExpenseModel> expenses) {
         List<ExpenseModel> incomeList = new ArrayList<>();
         for (ExpenseModel expense : expenses) {
-            if ("Income".equals(expense.getMoneyType())) {
+            if ("Expense".equals(expense.getMoneyType())) {
                 incomeList.add(expense);
             }
         }
         return incomeList;
     }
 
+    public void deleteExpense(int position) {
+        int expenseId = getExpenseIdByPosition(position);
+        expenseDeleteListener.onExpenseDelete(expenseId);
+    }
 
+    private int getExpenseIdByPosition(int position) {
+        if (expenseList != null && position >= 0 && position < expenseList.size()) {
+            ExpenseModel expense = expenseList.get(position);
+            return expense.getId();
+        }
+        return -1;
+    }
 
 
 }

@@ -1,12 +1,7 @@
 package com.app.budgetmanagementapp.network;
 
-import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -23,6 +18,7 @@ public class ApiClient {
                     .readTimeout(10, TimeUnit.SECONDS)    // Okuma zaman aşımı süresi
                     .writeTimeout(10, TimeUnit.SECONDS)   // Yazma zaman aşımı süresi
                     .build();
+
 
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL) .client(client)

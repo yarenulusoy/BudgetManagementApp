@@ -1,5 +1,8 @@
 package com.app.budgetmanagementapp.model;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+
 public class UserModel {
 
     String username;
@@ -30,6 +33,9 @@ public class UserModel {
         this.password = password;
     }
 
+    public boolean isInputDataValid() {
+        return !TextUtils.isEmpty(getUsername()) && Patterns.EMAIL_ADDRESS.matcher(getUsername()).matches() && getPassword().length() > 5;
+    }
 
 
 }

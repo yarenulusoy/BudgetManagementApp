@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".view.HomeActivity">
 
@@ -19,13 +19,6 @@
             android:layout_height="57dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:scaleType="fitXY"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                tools:ignore="SpeakableTextPresentCheck"
-                tools:srcCompat="@tools:sample/avatars" />
 
             <LinearLayout
                 android:layout_width="126dp"
@@ -40,25 +33,19 @@
                     android:text="Hoşgeldiniz !"
                     android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Yaren Ulusoy"
-                    android:textColor="@color/black" />
-            </LinearLayout>
+                        </LinearLayout>
+
             <Button
                 android:id="@+id/buttonExchange"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="Döviz Kurları"
-                android:textColor="@color/black"
-                />
+                android:textColor="@color/black" />
 
             <ImageButton
                 android:id="@+id/logOut"
-                android:layout_width="50dp"
+                android:layout_width="20dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/common_full_open_on_phone"
@@ -178,6 +165,7 @@
             <TextView
                 android:id="@+id/textView7"
                 android:textSize="20sp"
+                android:paddingBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Harcamalarım"
@@ -205,15 +193,24 @@
                 android:layout_height="50dp"
                 android:text="Gelir Ekle"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/toryBlue" />
+                app:backgroundTint="@color/purple" />
 
             <Button
                 android:id="@+id/buttonAddExpense"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/toryBlue"
+                app:backgroundTint="@color/purple"
                 android:text="Gider Ekle" />
+
+
+            <Button
+                android:id="@+id/buttonAll"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/purple"
+                android:text="Tüm Gelir Giderler" />
         </LinearLayout>
 
 

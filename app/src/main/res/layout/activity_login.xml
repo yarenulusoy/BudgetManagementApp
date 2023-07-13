@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity"
-    android:background="@color/toryBlue"
+    android:background="@color/purple"
     android:orientation="horizontal">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -53,7 +54,7 @@
                 android:text="Giriş Yap"
                 android:textSize="18sp"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/toryBlue"
+                app:backgroundTint="@color/purple"
                 app:cornerRadius="20dp"
                 tools:ignore="HardcodedText" />
 
@@ -76,7 +77,7 @@
                     android:layout_marginLeft="10dp"
                     android:clickable="true"
                     android:text="Kayıt Ol"
-                    android:textColor="@color/bondiBlue"
+                    android:textColor="@color/purple"
                     tools:ignore="TouchTargetSizeCheck" />
                 <!--android:onClick="onSignClick"-->
 
@@ -90,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:text="Beni Unut"
-                android:textColor="@color/bondiBlue"
+                android:textColor="@color/purple"
                 tools:ignore="TouchTargetSizeCheck" />
 
 

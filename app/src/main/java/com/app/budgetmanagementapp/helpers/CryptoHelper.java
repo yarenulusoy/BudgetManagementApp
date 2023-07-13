@@ -85,4 +85,27 @@ public class CryptoHelper {
         String savedPassword = getPassword(context);
         return !savedUsername.isEmpty() && !savedPassword.isEmpty();
     }
+
+    public static void logout(Context context) {
+        try {
+            MasterKey masterKey = new MasterKey.Builder(context)
+                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                    .build();
+
+            EncryptedSharedPreferences sharedPreferences = (EncryptedSharedPreferences) EncryptedSharedPreferences.create(
+                    context,
+                    SHARED_PREFS_NAME,
+                    masterKey,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove(KEY_USERNAME);
+            editor.remove(KEY_PASSWORD);
+            editor.apply();
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

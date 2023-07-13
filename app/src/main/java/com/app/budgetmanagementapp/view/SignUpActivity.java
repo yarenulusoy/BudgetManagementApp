@@ -28,8 +28,10 @@ public class SignUpActivity extends AppCompatActivity {
             String email = emailEditText.getText().toString();
             String password = passwordEditText.getText().toString();
             if (email.length() > 0 && password.length() > 0) {
-                if(password.equals(confirmPasswordEditText)){
+                if(password.equals(confirmPasswordEditText.getText().toString())){
                     authViewModel.register(email, password);
+                    Toast.makeText(SignUpActivity.this, "Kayıt Başarılı.", Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     Toast.makeText(SignUpActivity.this, "Şifreler uyuşmuyor.", Toast.LENGTH_SHORT).show();
