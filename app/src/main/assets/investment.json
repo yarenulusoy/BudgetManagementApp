@@ -1,0 +1,84 @@
+{
+  "exchangeRates": [
+    {
+      "currencyPair": "USD/TRY",
+      "rate": 26.22,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "currencyPair": "EUR/TRY",
+      "rate": 28.75,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "currencyPair": "GBP/TRY",
+      "rate": 33.97,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "currencyPair": "JPY/TRY",
+      "rate": 0.19,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "currencyPair": "CAD/TRY",
+      "rate": 19.83,
+      "timestamp": "2023-07-13T10:30:00Z"
+    }
+  ],
+  "goldPrices": [
+    {
+      "type": "Gram",
+      "price": 400,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "type": "Quarter",
+      "price": 100,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "type": "Full",
+      "price": 1600,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "type": "Ounce",
+      "price": 1250,
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "type": "Kilogram",
+      "price": 40000,
+      "timestamp": "2023-07-13T10:30:00Z"
+    }
+    
+  ],
+  "stocks": [
+    {
+      "symbol": "GARAN",
+      "name": "Garanti BBVA",
+      "price": 11.50,
+      "change": "+0.20",
+      "percentChange": "+1.77%",
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "symbol": "AKBNK",
+      "name": "Akbank",
+      "price": 6.80,
+      "change": "-0.10",
+      "percentChange": "-1.45%",
+      "timestamp": "2023-07-13T10:30:00Z"
+    },
+    {
+      "symbol": "KCHOL",
+      "name": "Koç Holding",
+      "price": 25.60,
+      "change": "+0.30",
+      "percentChange": "+1.19%",
+      "timestamp": "2023-07-13T10:30:00Z"
+    }
+  ],
+  "success": true
+}

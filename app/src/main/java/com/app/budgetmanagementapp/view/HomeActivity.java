@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,28 +22,29 @@ import java.util.List;
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
-private ExpenseViewModel expenseViewModel;
+    private ExpenseViewModel expenseViewModel;
     private RecyclerView recyclerView;
     private ExpenseAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Button button = findViewById(R.id.buttonAddIncome);
+        Button buttonIncome = findViewById(R.id.buttonAddIncome);
+        Button buttonExpense = findViewById(R.id.buttonAddExpense);
         TextView totalAmountTextView = findViewById(R.id.textViewAmount);
         TextView totalIncomeTextView = findViewById(R.id.amountTextView);
         TextView totalExpenseTextView = findViewById(R.id.expenseTextView   );
         expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
-        Calendar calendar = Calendar.getInstance();
-        Date today = calendar.getTime();
-        button.setOnClickListener(v -> expenseViewModel.addExpense(new ExpenseModel(
-                "Income",
-                "100",
-                today.toString(),
-                "Income",   "Income",   "ddd"
 
-        )));
+        buttonIncome.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, AddIncome.class);
+            startActivity(intent);
+        });
 
+        buttonExpense.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, AddExpense.class);
+            startActivity(intent);
+        });
         recyclerView= findViewById(R.id.recyclerView);
         adapter = new ExpenseAdapter();
 

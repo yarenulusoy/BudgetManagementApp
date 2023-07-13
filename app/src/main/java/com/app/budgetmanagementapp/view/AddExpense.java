@@ -1,14 +1,13 @@
 package com.app.budgetmanagementapp.view;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.app.budgetmanagementapp.R;
 import com.app.budgetmanagementapp.helpers.JsonHelper;
 import com.app.budgetmanagementapp.model.ExpenseModel;
 import com.app.budgetmanagementapp.viewmodel.ExpenseViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,14 +21,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class AddIncome extends AppCompatActivity {
+public class AddExpense extends AppCompatActivity {
     private ExpenseViewModel expenseViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_income);
+        setContentView(R.layout.activity_add_expense);
         expenseViewModel = new ViewModelProvider(this).get(ExpenseViewModel.class);
-        Button addIncomeButton = findViewById(R.id.buttonAddIncome);
+        Button addExpenseButton = findViewById(R.id.buttonAddExpense);
         Spinner categorySpinner = findViewById(R.id.categorySpinner);
         EditText amountEditText = findViewById(R.id.editTextAmount);
         EditText descriptionEditText = findViewById(R.id.editTextDescription);
@@ -43,16 +42,16 @@ public class AddIncome extends AppCompatActivity {
         categorySpinner.setAdapter(adapter);
         Calendar calendar = Calendar.getInstance();
         Date today = calendar.getTime();
-        addIncomeButton.setOnClickListener(v -> {
+        addExpenseButton.setOnClickListener(v -> {
             String category = categorySpinner.getSelectedItem().toString();
             String amount = amountEditText.getText().toString();
             String description = descriptionEditText.getText().toString();
             assert user != null;
             expenseViewModel.addExpense(new ExpenseModel(description,
-                amount,category,today.toString(),"Income",user.getUid()
-               ));
+                    amount,category,today.toString(),"Expense",user.getUid()
+            ));
             Toast.makeText(getApplicationContext(), "Veri başarıyla eklendi", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(AddIncome.this, HomeActivity.class);
+            Intent intent = new Intent(AddExpense.this, HomeActivity.class);
             startActivity(intent);
         });
     }

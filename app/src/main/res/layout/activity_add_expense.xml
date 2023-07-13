@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp"
-    tools:context=".view.AddIncome">
+    tools:context=".view.AddExpense">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,12 +65,12 @@
 
     </LinearLayout>
     <Button
-        android:id="@+id/buttonAddIncome"
+        android:id="@+id/buttonAddExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:backgroundTint="@color/toryBlue"
         android:textColor="@color/white"
-        android:text="Gelir Ekle" />
+        android:text="Gider Ekle" />
 
 
 </LinearLayout>

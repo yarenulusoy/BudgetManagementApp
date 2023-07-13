@@ -11,13 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.budgetmanagementapp.R;
 import com.app.budgetmanagementapp.model.ExpenseModel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
     private List<ExpenseModel> expenseList;
-
+    private Map<String, Double> categoryTotalMap;
     public ExpenseAdapter() {
-        this.expenseList = null;
+        this.expenseList = null;    this.categoryTotalMap = new HashMap<>();
     }
 
     public class ExpenseViewHolder extends RecyclerView.ViewHolder {
@@ -51,7 +54,20 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
 
     public void setDataList(List<ExpenseModel> expenses) {
-        expenseList = expenses;
+        expenseList =filterIncome(expenses);
         notifyDataSetChanged();
     }
+    private List<ExpenseModel> filterIncome(List<ExpenseModel> expenses) {
+        List<ExpenseModel> incomeList = new ArrayList<>();
+        for (ExpenseModel expense : expenses) {
+            if ("Income".equals(expense.getMoneyType())) {
+                incomeList.add(expense);
+            }
+        }
+        return incomeList;
+    }
+
+
+
+
 }

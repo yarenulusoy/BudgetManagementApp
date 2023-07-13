@@ -1,0 +1,33 @@
+{
+  "categories": [
+    {
+      "categoryName": "Konaklama",
+      "id": "1"
+    },
+    {
+      "categoryName": "Sağlık",
+      "id": "2"
+    },
+    {
+      "categoryName": "Yeme ve içme",
+      "id": "3"
+    },
+    {
+      "categoryName": "Ulaştırma",
+      "id": "4"
+    },
+    {
+      "categoryName": "Diğer Harcamalar",
+      "id": "5"
+    },
+    {
+      "categoryName": "Giyecek ve Hediyelik Eşya",
+      "id": "6"
+    },
+    {
+      "categoryName": "Seyahat",
+      "id": "7"
+    }
+  ],
+  "success": true
+}
