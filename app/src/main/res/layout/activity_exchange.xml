@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".view.ExchangeActivity">
+
+    <TextView
+        android:id="@+id/exchangeRatesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exchange Rates:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/goldPricesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gold Prices:"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/stocksTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stocks:"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+</LinearLayout>

@@ -36,33 +36,27 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordEditText = findViewById(R.id.password);
         CheckBox checkBox = findViewById(R.id.checkBox);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        authViewModel.getUserLiveData().observe(this, new Observer<FirebaseUser>() {
-            @Override
-            public void onChanged(FirebaseUser firebaseUser) {
-                if (firebaseUser != null) {
-                    if(!checkBox.isChecked()){
-                        CryptoHelper.saveCredentials(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
-
-                    }
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(LoginActivity.this, "Lütfen eposta ve şifrenizi doğru girinz.", Toast.LENGTH_SHORT).show();
+        authViewModel.getUserLiveData().observe(this, firebaseUser -> {
+            if (firebaseUser != null) {
+                if(!checkBox.isChecked()){
+                    CryptoHelper.saveCredentials(LoginActivity.this, emailEditText.getText().toString(), passwordEditText.getText().toString());
 
                 }
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(LoginActivity.this, "Lütfen eposta ve şifrenizi doğru girinz.", Toast.LENGTH_SHORT).show();
+
             }
         });
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                if (email.length() > 0 && password.length() > 0) {
-                    authViewModel.login(email, password);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Lütfen eposta ve şifrenizi girinz.", Toast.LENGTH_SHORT).show();
-                }
+        loginButton.setOnClickListener(v -> {
+            String email = emailEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            if (email.length() > 0 && password.length() > 0) {
+                authViewModel.login(email, password);
+            } else {
+                Toast.makeText(LoginActivity.this, "Lütfen eposta ve şifrenizi girinz.", Toast.LENGTH_SHORT).show();
             }
         });
 

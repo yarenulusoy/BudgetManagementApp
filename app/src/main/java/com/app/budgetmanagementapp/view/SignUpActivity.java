@@ -22,17 +22,21 @@ public class SignUpActivity extends AppCompatActivity {
         Button registerButton = findViewById(R.id.registerButton);
         EditText emailEditText = findViewById(R.id.username);
         EditText passwordEditText = findViewById(R.id.password);
+        EditText confirmPasswordEditText = findViewById(R.id.passwordControl);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-                if (email.length() > 0 && password.length() > 0) {
+        registerButton.setOnClickListener(v -> {
+            String email = emailEditText.getText().toString();
+            String password = passwordEditText.getText().toString();
+            if (email.length() > 0 && password.length() > 0) {
+                if(password.equals(confirmPasswordEditText)){
                     authViewModel.register(email, password);
-                } else {
-                    Toast.makeText(SignUpActivity.this, "Lütfen eposta ve şifrenizi girinz.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(SignUpActivity.this, "Şifreler uyuşmuyor.", Toast.LENGTH_SHORT).show();
+                }
+
+            } else {
+                Toast.makeText(SignUpActivity.this, "Lütfen eposta ve şifrenizi girinz.", Toast.LENGTH_SHORT).show();
             }
         });
     }

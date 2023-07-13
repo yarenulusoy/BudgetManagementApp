@@ -9,14 +9,10 @@
     android:padding="30dp"
     tools:context=".view.AddIncome">
     <LinearLayout
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kategori Seç: " />
 
         <Spinner
             android:id="@+id/categorySpinner"
@@ -25,19 +21,14 @@
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="108dp" />
 
-
     </LinearLayout>
 
 
     <LinearLayout
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Miktar: " />
 
         <EditText
             android:id="@+id/editTextAmount"
@@ -48,14 +39,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Açıklama: " />
 
         <EditText
             android:id="@+id/editTextDescription"

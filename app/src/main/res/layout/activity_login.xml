@@ -52,6 +52,7 @@
                 android:layout_marginTop="30dp"
                 android:text="Giriş Yap"
                 android:textSize="18sp"
+                android:textColor="@color/white"
                 app:backgroundTint="@color/toryBlue"
                 app:cornerRadius="20dp"
                 tools:ignore="HardcodedText" />
